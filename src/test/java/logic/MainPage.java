@@ -9,20 +9,34 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+
 public class MainPage extends AppPage {
     private final String PLUS_BUTTON_ID = "com.claudivan.taskagenda:id/btNovoEvento";
     private final String POP_UP_LIST_ID = "android:id/select_dialog_listview";
     private final String HAMBURGER_MENU_ID = "com.claudivan.taskagenda:id/hamburguer";
+    private final String RIGHT_ARROW_ID = "com.claudivan.taskagenda:id/ibtAvancar";
+    private final String LEFT_ARROW_ID = "com.claudivan.taskagenda:id/ibtRetroceder";
+    private final String DATE_TITLE_ID = "com.claudivan.taskagenda:id/tvVisor";
     private WebElement plusBtn;
    private WebElement popUpList;
    private WebElement menu;
+   private WebElement rightArrow;
+   private WebElement leftArrow;
+   private WebElement dateTitle;
    private HamburgerMenu hamburgerMenu;
    private AboutPage aboutPage;
+   private String title;
+
 
     public MainPage(AndroidDriver driver) {
         super(driver);
         this.plusBtn = driver.findElement(By.id(PLUS_BUTTON_ID));
         this.menu = driver.findElement(By.id(HAMBURGER_MENU_ID));
+        this.rightArrow = driver.findElement(By.id(RIGHT_ARROW_ID));
+        this.leftArrow = driver.findElement(By.id(LEFT_ARROW_ID));
+        this.dateTitle = driver.findElement(By.id(DATE_TITLE_ID));
+        this.title = dateTitle.getText();
     }
     public void clickPlusBtn(){
         this.plusBtn.click();
@@ -47,5 +61,15 @@ public class MainPage extends AppPage {
     }
     public boolean checkAbout(){
         return aboutPage.checkAbout();
+    }
+
+    public void clickRightArrow(){
+        rightArrow.click();
+    }
+    public void clickLeftArrow(){
+        leftArrow.click();
+    }
+    public boolean checkChangedTitle(){
+        return (!title.equals(dateTitle.getText()));
     }
 }

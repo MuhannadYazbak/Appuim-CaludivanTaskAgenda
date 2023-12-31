@@ -66,6 +66,19 @@ public class ClaudivanTaskAgendaTest {
         //Assert
         assertTrue(mainPage.checkAbout());
     }
+    @ParameterizedTest
+    @MethodSource("leftOrRight")
+    public void changeWeek(String direction){
+        //Act
+        if(direction.equals("right"))
+        mainPage.clickRightArrow();
+        else mainPage.clickLeftArrow();
+        //Assert
+        assert(mainPage.checkChangedTitle());
+    }
+    private static Stream<String> leftOrRight(){
+        return  Stream.of("left", "right");
+    }
 
 
 
