@@ -6,6 +6,8 @@ import infra.TestContextParameterResolver;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 import logic.MainPage;
+import logic.NewEvent;
+import logic.PopUpList;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -27,6 +29,8 @@ public class ClaudivanTaskAgendaTest {
     private AppiumDriver driver;
     private AppWrapper appWrapper;
     private MainPage mainPage;
+    private PopUpList popUpList;
+    private NewEvent newEvent;
     public TestContext context;
 
     public ClaudivanTaskAgendaTest(TestContext context) {
@@ -89,6 +93,20 @@ public class ClaudivanTaskAgendaTest {
     }
     private static Stream<String> leftOrRight(){
         return  Stream.of("left", "right");
+    }
+    @Test
+    public void addNewTaskForTomorrow(){
+        //Arrange
+        mainPage.clickPlusBtn();
+        popUpList = new PopUpList(context.get("driver"));
+        //Act
+        popUpList.clickTomorrow();
+        newEvent = new NewEvent(context.get("driver"));
+        newEvent.createEvent("New Year", "code review");
+        mainPage = new MainPage(context.get("driver"));
+
+        //Assert
+        assert(mainPage.checkPending());
     }
 
 
