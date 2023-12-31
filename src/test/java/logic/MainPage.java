@@ -17,6 +17,7 @@ public class MainPage extends AppPage {
    private WebElement popUpList;
    private WebElement menu;
    private HamburgerMenu hamburgerMenu;
+   private AboutPage aboutPage;
 
     public MainPage(AndroidDriver driver) {
         super(driver);
@@ -39,5 +40,12 @@ public class MainPage extends AppPage {
     public boolean checkHamburgerMenuOpened(){
         //WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         return hamburgerMenu.getAbout().isDisplayed();
+    }
+    public void goToAbout(){
+        hamburgerMenu.getAbout().click();
+        aboutPage = new AboutPage(driver);
+    }
+    public boolean checkAbout(){
+        return aboutPage.checkAbout();
     }
 }
