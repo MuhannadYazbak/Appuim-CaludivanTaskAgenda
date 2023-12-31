@@ -1,0 +1,11 @@
+{
+  "desiredCapabilities": {
+    "platformName": "Android",
+    "platformVersion": "7.0",
+    "deviceName": "M96HADSDYUMDC",
+    "automationName": "UiAutomator2",
+    "appPackage": "com.claudivan.taskagenda",
+    "appActivity": "com.claudivan.taskagenda.Activities.MainActivity"
+  },
+  "appiumServerUrl": "http://127.0.0.1:4723/"
+}
