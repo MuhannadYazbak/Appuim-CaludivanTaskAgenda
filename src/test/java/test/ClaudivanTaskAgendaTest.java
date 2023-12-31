@@ -50,6 +50,13 @@ public class ClaudivanTaskAgendaTest {
         assertTrue(mainPage.checkPoPUpList());
 
     }
+    @Test
+    public void openHamburgerMenu(){
+        //Act
+        mainPage.OpenHamburgerMenu();
+        //Assert
+        assertTrue(mainPage.checkHamburgerMenuOpened());
+    }
 
 
 
